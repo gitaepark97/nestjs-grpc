@@ -1,0 +1,18 @@
+version: "3.4"
+
+services:
+  auth:
+    container_name: auth
+    build:
+      context: ./was
+      dockerfile: Dockerfile.auth
+
+  apigateway:
+    container_name: apigateway
+    build:
+      context: ./was
+      dockerfile: Dockerfile.apigateway
+    ports:
+      - "3000:3000"
+    depends_on:
+      - auth
